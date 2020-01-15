@@ -1,0 +1,29 @@
+{% set version = "0.0.0" %}
+{% set build_num = "0" %}
+{% set version_major = version.split(".")[0] %}
+
+{% if unix %}
+{% set library = "" %}
+{% else %}
+{% set library = "Library/" %}
+{% endif %}
+
+package:
+  name: test-fortran
+  version: {{ version }}
+
+source:
+    #path: /Users/chrisonian/Code/test/test_fortran/
+    url: https://www.slac.stanford.edu/~cmayes/test/test_fortran.tar.gz
+    
+build:
+  number: "{{ build_num }}"
+
+requirements:
+  build:
+    - {{ compiler("c") }}               # [unix]
+    - {{ compiler("fortran") }}         # [unix]
+    - make
+    - cmake
+
+
