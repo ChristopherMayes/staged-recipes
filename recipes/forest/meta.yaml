@@ -1,0 +1,29 @@
+{% set version = "3.8.0" %}
+{% set build_num = "0" %}
+{% set version_major = version.split(".")[0] %}
+
+{% if unix %}
+{% set library = "" %}
+{% else %}
+{% set library = "Library/" %}
+{% endif %}
+
+package:
+  name: bmad-forest
+  version: {{ version }}
+
+source:
+  path: /Users/chrisonian/Scratch/bmad_forest
+  #url: http://www.netlib.org/lapack/lapack-{{ version }}.tar.gz
+  #sha256: deb22cc4a6120bff72621155a9917f485f96ef8319ac074a7afbc68aab88bcf6
+
+build:
+  number: "{{ build_num }}"
+
+requirements:
+  build:
+    - {{ compiler("fortran") }}   
+    - make
+    - cmake
+
+
